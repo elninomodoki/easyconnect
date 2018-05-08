@@ -2,20 +2,26 @@ import os
 import time
 from selenium import webdriver
 #测试网络连通性
-ping_value=os.system('ping 8.8.8.8')
-#如果网络通畅自动连接海大vpn
-if ping_value == 0:
+ping_value=os.system('ping www.baidu.com')
+#如果网络不通畅自动连接
+if ping_value == 1:
 	browser = webdriver.Chrome()
-	browser.get('https://vpn.ouc.edu.cn')
+	browser.get('http://10.81.2.6/a70.htm')
 	#用户名
 	username="xxxxxxxx"
 	#密码
 	passwd="xxxxxxxx"
-	#自动连接
+	#自动登陆
 	browser.implicitly_wait(10)
-	elem=browser.find_element_by_id("svpn_name")
+	#填写用户名
+	elem=browser.find_element_by_xpath('//*[@id="edit_body"]/div[2]/div[2]/form/input[1]')
 	elem.send_keys(username)
-	elem=browser.find_element_by_id("svpn_password")
+	#填写密码
+	elem=browser.find_element_by_xpath('//*[@id="edit_body"]/div[2]/div[2]/form/input[2]')
 	elem.send_keys(passwd)
-	elem=browser.find_element_by_id("logButton")
+	#点击‘签到’
+	elem=browser.find_element_by_xpath('//*[@id="edit_body"]/div[2]/div[2]/form/input[3]')
 	elem.click()
+	browser.implicitly_wait(10)
+	browser.quit()
+
