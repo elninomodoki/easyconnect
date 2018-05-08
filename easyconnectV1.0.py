@@ -19,7 +19,7 @@ if ping_value == 1:
 	#填写密码
 	elem=browser.find_element_by_xpath('//*[@id="edit_body"]/div[2]/div[2]/form/input[2]')
 	elem.send_keys(passwd)
-	#点击‘签到’
+	#点击‘登陆’
 	elem=browser.find_element_by_xpath('//*[@id="edit_body"]/div[2]/div[2]/form/input[3]')
 	elem.click()
 	browser.implicitly_wait(10)
